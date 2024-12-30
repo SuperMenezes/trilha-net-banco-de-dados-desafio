@@ -1,0 +1,65 @@
+--QUERY #1
+select f.Nome, f.Ano
+from dbo.Filmes f;
+
+--QUERY #2
+select f.Nome, f.Ano
+from dbo.Filmes f
+order by f.Ano asc;
+
+--QUERY #3
+select f.Nome, f.Ano, f.Duracao
+from dbo.Filmes f
+where id = 28;
+
+--QUERY #4
+select *
+from dbo.Filmes f
+where f.Ano = 1997;
+
+--QUERY #5
+select *
+from dbo.Filmes f
+where f.Ano > 2000;
+
+--QUERY #6
+select *
+from dbo.Filmes f
+where f.Duracao > 100 AND
+	  f.Duracao < 150
+order by f.Duracao ASC;
+
+--QUERY #7
+select f.Ano, COUNT(*)
+from dbo.Filmes f
+group by f.Ano
+order by COUNT(*) DESC;
+
+--QUERY #8
+select *
+from dbo.Atores a;
+
+--QUERY #9
+select *
+from dbo.Atores a
+where a.Genero = 'F'
+order by a.PrimeiroNome ASC
+
+--QUERY #10
+select f.Nome, g.Genero
+from dbo.FilmesGenero fg
+	JOIN dbo.Filmes f ON fg.IdFilme = f.Id
+	JOIN dbo.Generos g ON fg.IdGenero = g.Id;
+
+--QUERY #11
+select f.Nome, g.Genero
+from dbo.FilmesGenero fg
+	JOIN dbo.Filmes f ON fg.IdFilme = f.Id
+	JOIN dbo.Generos g ON fg.IdGenero = g.Id
+where g.Genero = 'Mistério';
+
+--QUERY #12
+select f.Nome, a.PrimeiroNome, a.UltimoNome, ef.Papel
+from dbo.ElencoFilme ef
+	JOIN dbo.Filmes f ON ef.IdFilme = f.Id
+	JOIN dbo.Atores a ON ef.IdAtor = a.Id;
